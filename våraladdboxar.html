@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Våra laddboxar</title>
+    <link rel="stylesheet" href="våraladdboxar.css">
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .produkt {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .varukorg {
+
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .varukorg-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding: 5px;
+        }
+
+        .varukorg-item button {
+            background-color: #ff5050;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+         
+
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Våra laddboxar</h1>
+
+    <div class="produkt" id="produkt1">
+        <img src="charge-ampa-aura-22kw-laddbox.png">
+        <h2>Charge Amps Aura 22 kW</h2>
+        <p>Laddboxen kan ladda 2 bilar samtidigt</p>
+        <p>Pris: 12 999kr</p>
+        <button onclick="läggTillIVarukorg('Produkt 1', 19.99)">Lägg till i varukorg</button>
+    </div>
+
+    <div class="produkt" id="produkt2">
+        <img src="defa-power-laddbox-1.png">
+        <h2> Defa Power 22kW</h2>
+        <p>En smart, kraftfull och säker laddbox med 6 meter fast kabel.</p>
+        <p>Pris: 6 999kr</p>
+        <button onclick="läggTillIVarukorg('Produkt 1', 19.99)">Lägg till i varukorg</button>
+    </div>
+
+    <div class="produkt" id="produkt3">
+        <img src="zaptec-go-svart.png">
+        <h2>Zaptec Go 22 kW</h2>
+        <p>Zaptec laddboxen passar alla bilar</p>
+        <p>Pris: 5 995kr</p>
+        <button onclick="läggTillIVarukorg('Produkt 1', 19.99)">Lägg till i varukorg</button>
+    </div>
+
+    <div class="varukorg" id="varukorg">
+        <h2>Varukorg</h2>
+        <div id="varukorg-innehåll">
+            <!-- Varukorgens innehåll kommer att visas här -->
+        </div>
+    </div>
+
+
+    <script>
+         var varukorg = [];
+
+function läggTillIVarukorg(produkt, pris) {
+    varukorg.push({ produkt: produkt, pris: pris });
+    uppdateraVarukorg();
+    alert(produkt + ' har lagts till i varukorgen.');
+}
+
+function uppdateraVarukorg() {
+    var varukorgInnehåll = document.getElementById('varukorg-innehåll');
+    varukorgInnehåll.innerHTML = '';
+
+    if (varukorg.length === 0) {
+        varukorgInnehåll.innerHTML = '<p>Varukorgen är tom.</p>';
+    } else {
+        for (var i = 0; i < varukorg.length; i++) {
+            varukorgInnehåll.innerHTML += '<div class="varukorg-item">' +
+                '<span>' + varukorg[i].produkt + ' - $' + varukorg[i].pris.toFixed(2) + '</span>' +
+                '<button onclick="taBortFrånVarukorg(' + i + ')">Ta bort</button>' +
+            '</div>';
+        }
+    }
+}
+
+function taBortFrånVarukorg(index) {
+    varukorg.splice(index, 1);
+    uppdateraVarukorg();
+}
+
+       
+    </script>
+
+
+
+
+    
+
+    
+</body>
+</html>
